@@ -101,6 +101,9 @@ public:
     /** Print node onto an output stream */
     friend std::ostream& operator<<(std::ostream& out, const Node& node);
 
+    // FIXME turn this is a pure virtual function
+    virtual void printJSON(std::ostream& os) const = 0;
+
 protected:
     /** Output to a given output stream */
     virtual void print(std::ostream& os) const = 0;

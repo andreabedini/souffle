@@ -91,4 +91,22 @@ Clause* Clause::cloning() const {
     return new Clause(clone(head), clone(bodyLiterals), clone(plan), getSrcLoc());
 }
 
+void Clause::printJSON(std::ostream& os) const {
+    auto render = [&](auto&& xs) {
+      return join(xs, ",", [&](std::ostream& o, auto&& x) { x->printJSON(o); });
+    };
+
+    os << "{";
+    if (head != nullptr) {
+        os << R"("head":)";
+        head->printJSON(os);
+        os << ",";
+    }
+    os << R"("body-literals":[)" << render(bodyLiterals) << "]";
+    if (plan != nullptr) {
+        os << "," << R"("plan":)"; plan->printJSON(os);
+    }
+    os << "}";
+}
+
 }  // namespace souffle::ast

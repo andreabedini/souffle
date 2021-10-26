@@ -56,6 +56,17 @@ void Atom::print(std::ostream& os) const {
     os << getQualifiedName() << "(" << join(arguments) << ")";
 }
 
+void Atom::printJSON(std::ostream& os) const {
+    auto render = [&](auto&& xs) {
+      return join(xs, ",", [&](std::ostream& o, auto&& x) { x->printJSON(o); });
+    };
+
+    os << "{";
+    os << R"("name":")" << name << R"(",)";
+    os << R"("arguments":[)" << render(arguments) << "]";
+    os << "}";
+}
+
 bool Atom::equal(const Node& node) const {
     const auto& other = asAssert<Atom>(node);
     return name == other.name && equal_targets(arguments, other.arguments);

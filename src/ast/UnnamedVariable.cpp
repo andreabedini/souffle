@@ -19,4 +19,8 @@ UnnamedVariable* UnnamedVariable::cloning() const {
     return new UnnamedVariable(getSrcLoc());
 }
 
+void UnnamedVariable::printJSON(std::ostream& os) const {
+  os << R"({"type":"unnamed"})";
+}
+
 }  // namespace souffle::ast

@@ -10,6 +10,7 @@
 
 #include "souffle/utility/ContainerUtil.h"
 #include "souffle/utility/MiscUtil.h"
+#include "souffle/utility/StreamUtil.h"
 #include <cassert>
 
 namespace souffle::ast {
@@ -41,6 +42,14 @@ void Term::apply(const NodeMapper& map) {
 bool Term::equal(const Node& node) const {
     const auto& other = asAssert<Term>(node);
     return equal_targets(args, other.args);
+}
+
+void Term::printJSON(std::ostream& os) const {
+    auto render = [&](auto&& xs) {
+      return join(xs, ",", [&](std::ostream& o, auto&& x) { x->printJSON(o); });
+    };
+
+    os << R"({"type":"term","operands":)" << render(args) << "}";
 }
 
 }  // namespace souffle::ast

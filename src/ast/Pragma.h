@@ -37,6 +37,10 @@ public:
         return std::make_pair(key, value);
     }
 
+    void printJSON(std::ostream& os) const override {
+      os << R"({"key": ")" << key << R"(","value":)" << value << "}";
+    }
+
 protected:
     void print(std::ostream& os) const override;
 

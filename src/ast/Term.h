@@ -51,6 +51,8 @@ public:
 
     bool equal(const Node& node) const override;
 
+    void printJSON(std::ostream& os) const override;
+
 private:
     NodeVec getChildren() const override;
 

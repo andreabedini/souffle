@@ -109,6 +109,8 @@ public:
 
     void apply(const NodeMapper& mapper) override;
 
+    void printJSON(std::ostream& os) const override;
+
 protected:
     void print(std::ostream& os) const override;
 

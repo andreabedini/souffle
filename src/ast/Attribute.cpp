@@ -24,6 +24,13 @@ void Attribute::print(std::ostream& os) const {
     os << name << ":" << typeName;
 }
 
+void Attribute::printJSON(std::ostream& os) const {
+    os << "{";
+    os << R"("name":")" << name << R"(",)";
+    os << R"("type":")" << typeName << R"(")";
+    os << "}";
+}
+
 bool Attribute::equal(const Node& node) const {
     const auto& other = asAssert<Attribute>(node);
     return name == other.name && typeName == other.typeName;

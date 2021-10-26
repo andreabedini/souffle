@@ -30,6 +30,10 @@ void BooleanConstraint::print(std::ostream& os) const {
     os << (truthValue ? "true" : "false");
 }
 
+void BooleanConstraint::printJSON(std::ostream&) const {
+    // FIXME
+}
+
 bool BooleanConstraint::equal(const Node& node) const {
     const auto& other = asAssert<BooleanConstraint>(node);
     return truthValue == other.truthValue;

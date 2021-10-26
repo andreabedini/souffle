@@ -30,4 +30,9 @@ bool Variable::equal(const Node& node) const {
 Variable* Variable::cloning() const {
     return new Variable(name, getSrcLoc());
 }
+
+void Variable::printJSON(std::ostream& os) const {
+    os << R"({"type":"variable","name":")" << name << R"("})";
+}
+
 }  // namespace souffle::ast

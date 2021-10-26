@@ -28,6 +28,10 @@ void BranchType::print(std::ostream& os) const {
     os << tfm::format("%s {%s}", name, join(fields, ", "));
 }
 
+void BranchType::printJSON(std::ostream&) const {
+  // FIXME
+}
+
 BranchType* BranchType::cloning() const {
     return new BranchType(name, clone(fields), getSrcLoc());
 }

@@ -34,6 +34,8 @@ public:
         return constant;
     }
 
+    void printJSON(std::ostream& os) const override;
+
 protected:
     Constant(std::string value, SrcLocation loc = {});
 

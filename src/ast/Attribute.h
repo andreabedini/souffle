@@ -49,6 +49,8 @@ public:
     /** Set type name */
     void setTypeName(QualifiedName name);
 
+    void printJSON(std::ostream& os) const override;
+
 protected:
     void print(std::ostream& os) const override;
 

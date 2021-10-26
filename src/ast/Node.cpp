@@ -54,4 +54,8 @@ Node::NodeVec Node::getChildren() const {
     return {};
 }
 
+void Node::printJSON(std::ostream& os) const {
+  os << R"("not implemented")";
+}
+
 }  // namespace souffle::ast

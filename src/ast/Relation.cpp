@@ -63,6 +63,22 @@ void Relation::print(std::ostream& os) const {
     }
 }
 
+void Relation::printJSON(std::ostream& os) const {
+    auto render = [&](auto&& xs) {
+      return join(xs, ",", [&](std::ostream& o, auto&& x) { x->printJSON(o); });
+    };
+
+    os << "{";
+    os << R"("qualified-name":")" << getQualifiedName() << R"(",)";
+    os << R"("attributes":[)" << render(attributes) << "],";
+    os << R"("qualifiers":[)" << join(qualifiers, ",") << "],";
+    os << R"("representation":")" << representation << R"(")";
+    if (!functionalDependencies.empty()) {
+        os << R"("choice-domain:[")" << join(functionalDependencies, "]");
+    }
+    os << "}";
+}
+
 bool Relation::equal(const Node& node) const {
     const auto& other = asAssert<Relation>(node);
     return name == other.name && equal_targets(attributes, other.attributes) &&

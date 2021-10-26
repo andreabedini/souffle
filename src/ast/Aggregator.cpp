@@ -49,6 +49,10 @@ void Aggregator::print(std::ostream& os) const {
     os << " : { " << join(body) << " }";
 }
 
+void Aggregator::printJSON(std::ostream&) const {
+  // FIXME
+}
+
 bool Aggregator::equal(const Node& node) const {
     const auto& other = asAssert<Aggregator>(node);
     return baseOperator == other.baseOperator && equal_ptr(targetExpression, other.targetExpression) &&

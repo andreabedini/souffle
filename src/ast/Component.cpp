@@ -131,6 +131,10 @@ void Component::print(std::ostream& os) const {
     os << "}\n";
 }
 
+void Component::printJSON(std::ostream&) const {
+  // FIXME
+}
+
 bool Component::equal(const Node& node) const {
     const auto& other = asAssert<Component>(node);
 

@@ -37,6 +37,10 @@ void BinaryConstraint::print(std::ostream& os) const {
     }
 }
 
+void BinaryConstraint::printJSON(std::ostream&) const {
+  // FIXME
+}
+
 bool BinaryConstraint::equal(const Node& node) const {
     const auto& other = asAssert<BinaryConstraint>(node);
     return operation == other.operation && equal_ptr(lhs, other.lhs) && equal_ptr(rhs, other.rhs);

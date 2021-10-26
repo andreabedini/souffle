@@ -44,6 +44,8 @@ public:
 
     std::vector<BranchType*> getBranches() const;
 
+    void printJSON(std::ostream& os) const override;
+
 protected:
     void print(std::ostream& os) const override;
 

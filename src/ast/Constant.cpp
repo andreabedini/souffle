@@ -24,4 +24,8 @@ bool Constant::equal(const Node& node) const {
     return constant == other.constant;
 }
 
+void Constant::printJSON(std::ostream& os) const {
+  os << R"({"type":"constant","value":")" << constant << R"("})";
+}
+
 }  // namespace souffle::ast

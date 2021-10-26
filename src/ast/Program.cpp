@@ -170,6 +170,23 @@ void Program::print(std::ostream& os) const {
     show(directives, "\n\n");
 }
 
+void Program::printJSON(std::ostream& os) const {
+    auto render = [&](auto&& xs) {
+        return join(xs, ", ", [&](std::ostream& o, auto&& x) { x->printJSON(o); });
+    };
+
+    os << "{";
+    os << R"("pragmas":[)" << render(pragmas) << "],";
+    os << R"("components":[)" << render(components) << "],";
+    os << R"("instantiations":[)" << render(instantiations) << "],";
+    os << R"("types":[)" << render(types) << "],";
+    os << R"("functors":[)" << render(functors) << "],";
+    os << R"("relations":[)" << render(relations) << "],";
+    os << R"("clauses":[)" << render(clauses) << "],";
+    os << R"("directives":[)" << render(directives) << "]";
+    os << "}";
+}
+
 bool Program::equal(const Node& node) const {
     const auto& other = asAssert<Program>(node);
     // clang-format off

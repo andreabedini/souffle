@@ -254,6 +254,7 @@ int main(int argc, char** argv) {
                         "Print selected program information.\n"
                         "Modes:\n"
                         "\tinitial-ast\n"
+                        "\tinitial-ast-json\n"
                         "\tinitial-ram\n"
                         "\tparse-errors\n"
                         "\tprecedence-graph\n"
@@ -457,6 +458,10 @@ int main(int argc, char** argv) {
         // no other show options specified -> bail, we're done.
         if (Global::config().getMany("show").size() == 1) return 0;
     }
+    if (hasShowOpt("initial-ast-json")) {
+        astTranslationUnit->getProgram().printJSON(std::cout);
+    }
+
 
     /* construct the transformation pipeline */
 

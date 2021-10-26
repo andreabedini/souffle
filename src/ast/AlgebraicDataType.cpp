@@ -34,6 +34,10 @@ void AlgebraicDataType::print(std::ostream& os) const {
     os << tfm::format(".type %s = %s", getQualifiedName(), join(branches, " | "));
 }
 
+void AlgebraicDataType::printJSON(std::ostream&) const {
+  // FIXME
+}
+
 bool AlgebraicDataType::equal(const Node& node) const {
     const auto& other = asAssert<AlgebraicDataType>(node);
     return getQualifiedName() == other.getQualifiedName() && branches == other.branches;

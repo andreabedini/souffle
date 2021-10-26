@@ -20,6 +20,10 @@ void AliasType::print(std::ostream& os) const {
     os << ".type " << getQualifiedName() << " = " << getAliasType();
 }
 
+void AliasType::printJSON(std::ostream&) const {
+  // FIXME
+}
+
 bool AliasType::equal(const Node& node) const {
     const auto& other = asAssert<AliasType>(node);
     return getQualifiedName() == other.getQualifiedName() && aliasType == other.aliasType;
